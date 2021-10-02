@@ -33,10 +33,7 @@ function Main(props) {
           <Ionicons name={iconName} size={24} color="black" />);
         },
       })}
-      tabBarOptions={{
-        activeTintColor: 'tomato',
-        inactiveTintColor: 'gray',
-      }}
+     
       initialRouteName={point} >
       <Tab.Screen name="Signin" component={Signin} />
       <Tab.Screen name="Signup" component={Signup} />
