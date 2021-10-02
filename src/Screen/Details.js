@@ -1,6 +1,18 @@
-import React from 'react';
+import React,{useReducer} from 'react';
 import {View, Text,Button} from 'react-native';
+function reducer(state, action) {
+  switch (action.type) {
+    case 'increment':
+      return {count: state.count + 1};
+    case 'decrement':
+      return {count: state.count - 1};
+    default:
+      throw new Error();
+  }
+}
 const AccountScreen = ({navigation}) => {
+  const [state, dispatch] = useReducer(reducer, []);
+
   return (
     <View>
       <Text>AccountScreen</Text>
