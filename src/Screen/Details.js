@@ -7,7 +7,7 @@ const AccountScreen = ({navigation}) => {
       <Button title="Signup" onPress={() => {navigation.push('Main',{Pointed:'Signup'});}}/>
       <Button title="Signin" onPress={() => {navigation.push('Main',{Pointed:'Signin'});}}/>
       <Button title="AccountScreen" onPress={() => {navigation.push('Main',{Pointed:'AccountScreen'});}}/>
-
+      <Text>Just testing</Text>
     </View>
   );
 };
