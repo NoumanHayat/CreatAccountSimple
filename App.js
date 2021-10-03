@@ -7,6 +7,7 @@ import DetailsScreen from './src/Screen/Details';
 import Signin from './src/Screen/Signin';
 import Signup from './src/Screen/Signup';
 import {createStackNavigator} from 'react-navigation-stack';
+import { Provider as AuthProvider } from './src/DataContext/AuthContext'; 
 // import { createBottomTabNavigator } from 'react-navigation-tabs';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/FontAwesome';
@@ -55,5 +56,14 @@ function App() {
     </NavigationContainer>
   );
 }
-
-export default App;
+// const AppContainer= createAppContainer(App);
+function AppRetuern(){
+  return (
+    <AuthProvider>
+      <App />
+    </AuthProvider>
+  )
+}
+ export default ret= AppRetuern;
+   
+ 
