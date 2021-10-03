@@ -27,7 +27,7 @@ const Signup = ({navigation}) => {
         leftIcon={<Entypo name="phone" size={24} color="black" />}
       />
       <Input
-        placeholder="Password" value={password} onChangeText={(text)=>setPassword(text)}
+        placeholder="Password" secureTextEntry={true} value={password} onChangeText={(text)=>setPassword(text)}
         leftIcon={<Ionicons name="lock" size={24} color="black" />}
       />
       <Button title="Creat Account" />

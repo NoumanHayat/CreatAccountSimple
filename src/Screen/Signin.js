@@ -15,7 +15,7 @@ const Signin = ({navigation}) => {
       />
      
       <Input
-        placeholder="Password"
+        placeholder="Password" secureTextEntry={true}
         leftIcon={<Ionicons name="lock" size={24} color="black" />}
       />
       <Button title="Creat Account" />

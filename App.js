@@ -19,6 +19,7 @@ function Main(props) {
     <Tab.Navigator 
       screenOptions={({route}) => ({
         headerShown: false,
+        
         tabBarIcon: ({color, size}) => {
           let iconName;
           if (route.name == 'Signin') {
@@ -32,6 +33,7 @@ function Main(props) {
           // <Ionicons name={{iconName}} size={24} color="black" />
           <Ionicons name={iconName} size={24} color="black" />);
         },
+        
       })}
      
       initialRouteName={point} >
