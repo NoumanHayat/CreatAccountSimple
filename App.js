@@ -7,13 +7,15 @@ import DetailsScreen from './src/Screen/Details';
 import Signin from './src/Screen/Signin';
 import Signup from './src/Screen/Signup';
 import {createStackNavigator} from 'react-navigation-stack';
-import { Provider as AuthProvider } from './src/DataContext/AuthContext'; 
+import { Provider as AuthProvider } from './src/DataContext/createDataContext'; 
 // import { createBottomTabNavigator } from 'react-navigation-tabs';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/FontAwesome';
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 function Main(props) {
+  
+  console.clear();
   const point =
     props.route.params !== undefined ? props.route.params.Pointed : 'Signin';
   return (

@@ -1,22 +1,42 @@
 import React, { useReducer } from 'react';
+import axios from 'axios';
 
-export default (reducer, actions, defaultValue) => {
-  const Context = React.createContext();
+ const Context = React.createContext();
+  const signin= async (props)=>{
 
-  const Provider = ({ children }) => {
-    const [state, dispatch] = useReducer(reducer, defaultValue);
+    console.log(props)
+   
+        try {
+          console.log('working')
+            const response = await axios.post('http://192.168.137.16:3000/api/v1/users/login',{
+            //   email :email,
+            // password : password
+            email :props.email,
+    password : props.password,
+           });
+            
+            console.log(response.data);
+          } catch (error) {
+            console.log(error);
+          }
+   
+}
+ export const Provider = ({ children }) => {
+    const authReducer = (state, action) => {
+      switch (action.type) {
+        default:
+          return state;
+      }
+    };
+    const [state, dispatch] = useReducer(authReducer, [{isSignedIn: false}]);
 
-    const boundActions = {};
-    for (let key in actions) {
-      boundActions[key] = actions[key](dispatch);
-    }
+   
 
     return (
-      <Context.Provider value={{ state, ...boundActions }}>
+      <Context.Provider value={{ state,signin}}>
         {children}
       </Context.Provider>
     );
   };
+  export default  Context;
 
-  return { Context, Provider };
-};
