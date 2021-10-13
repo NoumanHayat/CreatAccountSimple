@@ -1,9 +1,11 @@
-import React, {useReducer,useContext} from 'react';
+import React, {useReducer,useContext, useEffect} from 'react';
 import axios from 'axios';
-// import { AsyncStorage } from '@react-native-async-storage/async-storage';
+import  AsyncStorage  from '@react-native-async-storage/async-storage';
 
 const Context = React.createContext();
 const ip="192.168.18.99";
+
+
 const signin = async props => {
   
 
@@ -30,7 +32,7 @@ const signin = async props => {
     );
 
     console.log(response.data.token);
-    // await AsyncStorage.setItem("Token",response.data.token)
+    await AsyncStorage.setItem("Token",response.data.token)
     alert("You are now logged in")
   } catch (error) {
     console.log(error);
@@ -48,22 +50,40 @@ const signup = async props => {
     );
 
     console.log(response.data);
-
+    await AsyncStorage.setItem('Token',response.data)
     alert("You are now logged in")
   } catch (error) {
     console.log(error);
     alert(error.message);
   }
 };
+var defaultStatus=false;
+const automaticallySignIn=(dispatch)=>{
+  return async () => {
+    const token=await AsyncStorage.getItem('Token');
+    if(token) {
+      defaultStatus=true;
+    }
+
+  }
+}
 export const Provider = ({children}) => {
   const authReducer = (state, action) => {
     switch (action.type) {
+      case 'chageSignedIn':
+        return {...state, isSignedIn: true}
+
       default:
+        
         return state;
     }
   };
-  const [state, dispatch] = useReducer(authReducer, [{isSignedIn: false}]);
 
+
+  const [state, dispatch] = useReducer(authReducer, [{isSignedIn: defaultStatus}]);
+  useEffect(()=>{
+    automaticallySignIn(dispatch)
+  },[]);
   return (
     <Context.Provider value={{state, signin,signup}}>{children}</Context.Provider>
   );

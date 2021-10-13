@@ -2,6 +2,7 @@ import React, {useReducer,useContext} from 'react';
 import {View, Text, Button} from 'react-native';
 const axios = require('axios');
 import Context from '../DataContext/createDataContext';
+import  AsyncStorage  from '@react-native-async-storage/async-storage';
 
 // function reducer(state, action) {
 //   switch (action.type) {
@@ -17,10 +18,14 @@ import Context from '../DataContext/createDataContext';
 const AccountScreen = props => {
   const navigation = props.navigation;
   const {state} = useContext(Context);
+  
   // getTour();
 
   // const [state, dispatch] = useReducer(reducer, []);
-
+  // const checking =async () => {
+  //   // const check=await AsyncStorage.getItem('Token')
+  //  console.log("hello");
+  // }
   return (
     <View>
       <Text>AccountScreen</Text>
@@ -42,6 +47,23 @@ const AccountScreen = props => {
           navigation.push('Main', {Pointed: 'AccountScreen'});
         }}
       />
+<Button
+        title="Create"
+        onPress={async () => {
+          // const check=await AsyncStorage.getItem('Token')
+          console.log("Start Working!")
+          await AsyncStorage.setItem("Token","nomi is here ")
+        }}
+      />
+
+       <Button
+        title="Check"
+        onPress={async () => {
+           const check=await AsyncStorage.getItem('Token')
+         console.log("Data:"+check);
+        }}
+      />
+
 
       {state.isSignedIn? <Text>You are Signin</Text>:<Text>You Not are Signin</Text>}
     </View>
